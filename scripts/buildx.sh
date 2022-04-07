@@ -14,6 +14,7 @@ readonly PROJECT_ROOT="$(dirname $DIR)"
 RUN_ROOT="$PROJECT_ROOT"
 cd $PROJECT_ROOT;
 
+readonly DOCKER_NAMESPACE="436271674037.dkr.ecr.ap-southeast-1.amazonaws.com";
 readonly PROJECT_NAME="wallet-server";
 readonly RELEASE_NAME=${OMNIBUS_RELEASE:-"default"}
 readonly IMAGE_TAG=${VERSION:-$(git rev-parse --short HEAD)}
