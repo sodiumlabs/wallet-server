@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/dao/model"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/db"
+	"github.com/sodiumlabs/wallet-server/internal/pkg/types"
 	"gorm.io/gorm"
 )
 
@@ -98,8 +99,14 @@ func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, erro
 	// if err != nil {
 	// 	return nil, err
 	// }
+	i, err := types.RandomWithRange("1", "1000000000000000000000")
+
+	if err != nil {
+		return nil, err
+	}
+
 	twuser := &twitter.User{
-		ID:    12345678911,
+		ID:    int64(i),
 		Email: "",
 	}
 

@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: 436271674037.dkr.ecr.ap-southeast-1.amazonaws.com/wallet-server
   pullPolicy: IfNotPresent
-  tag: edf983130c474bbaa28baa1a8e463e5d8f1125fb
+  tag: 790dd18827fd7fbaea73fe88fdbf4aed7cf33612
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -27,7 +27,7 @@ service:
 containerPort: 8080
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: 
     kubernetes.io/ingress.class: nginx
   hosts:
