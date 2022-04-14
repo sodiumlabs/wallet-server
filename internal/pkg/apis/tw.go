@@ -99,7 +99,7 @@ func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, erro
 	// if err != nil {
 	// 	return nil, err
 	// }
-	i, err := types.RandomWithRange("1", "1000000000000000000000")
+	i, err := types.RandomWithRangeInt32(1, 1000000000)
 
 	if err != nil {
 		return nil, err
