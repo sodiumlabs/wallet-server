@@ -22,6 +22,7 @@ type StripePay struct {
 	Amount            uint64
 	UserWalletAddress string
 	Status            stripe.CheckoutSessionStatus
+	LatestCheckedAt   time.Time
 }
 
 // 更新支付状态

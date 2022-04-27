@@ -9,7 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/dao/model"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/db"
-	"github.com/sodiumlabs/wallet-server/internal/pkg/types"
 	"gorm.io/gorm"
 )
 
@@ -60,54 +59,36 @@ func (f *OauthVerifierRequest) TypeName() string { return "OauthVerifierRequestI
 
 func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, error) {
 	// TODO等待tw api接入
-	// config := oauth1.Config{
-	// 	ConsumerKey:    os.Getenv("twconsumerKey"),
-	// 	ConsumerSecret: os.Getenv("twconsumerSecret"),
-	// 	CallbackURL:    "",
-	// 	Endpoint:       oauth1tw.AuthorizeEndpoint,
-	// }
+	config := oauth1.Config{
+		ConsumerKey:    os.Getenv("twconsumerKey"),
+		ConsumerSecret: os.Getenv("twconsumerSecret"),
+		CallbackURL:    "",
+		Endpoint:       oauth1tw.AuthorizeEndpoint,
+	}
 	// Twitter ignores the oauth_signature on the access token request. The user
 	// to which the request (temporary) token corresponds is already known on the
 	// server. The request for a request token earlier was validated signed by
 	// the consumer. Consumer applications can avoid keeping request token state
 	// between authorization granting and callback handling.
-	// accessToken, accessSecret, err := config.AccessToken(q.OauthToken, "secret does not matter", q.Verifier)
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	// token := oauth1.NewToken(accessToken, accessSecret)
-
-	// httpClient will automatically authorize http.Request's
-	// httpClient := config.Client(oauth1.NoContext, token)
-
-	// Twitter client
-	// client := twitter.NewClient(httpClient)
-
-	// twUsers, _, err := client.Users.Lookup(&twitter.UserLookupParams{})
-
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	// twuser := &twUsers[0]
-
-	// twuser, _, err := client.Accounts.VerifyCredentials(&twitter.AccountVerifyParams{
-	// 	IncludeEmail: twitter.Bool(true),
-	// })
-
-	// if err != nil {
-	// 	return nil, err
-	// }
-	i, err := types.RandomWithRangeInt32(1, 1000000000)
-
+	accessToken, accessSecret, err := config.AccessToken(q.OauthToken, "secret does not matter", q.Verifier)
 	if err != nil {
 		return nil, err
 	}
 
-	twuser := &twitter.User{
-		ID:    int64(i),
-		Email: "",
+	token := oauth1.NewToken(accessToken, accessSecret)
+
+	// httpClient will automatically authorize http.Request's
+	httpClient := config.Client(oauth1.NoContext, token)
+
+	// Twitter client
+	client := twitter.NewClient(httpClient)
+
+	twuser, _, err := client.Accounts.VerifyCredentials(&twitter.AccountVerifyParams{
+		IncludeEmail: twitter.Bool(true),
+	})
+
+	if err != nil {
+		return nil, err
 	}
 
 	// check login

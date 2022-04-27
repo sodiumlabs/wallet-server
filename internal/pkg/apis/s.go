@@ -2,6 +2,7 @@ package apis
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/dao/model"
@@ -61,6 +62,7 @@ func CreateCheckoutSession(c *gin.Context, q *CreateCheckoutSessionReq) (*Create
 		Amount:            uint64(s.AmountTotal),
 		UserWalletAddress: user.WalletAddress,
 		Status:            s.Status,
+		LatestCheckedAt:   time.Now().UTC(),
 	}
 
 	if err := db.DB().Create(&sp).Error; err != nil {

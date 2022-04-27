@@ -817,6 +817,66 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_value",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_data",
+        "type": "bytes"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_nonce",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_gasPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_gasLimit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_refundToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_refundAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getSignHash",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "_wallet",
         "type": "address"
       }
@@ -1021,99 +1081,48 @@
         "type": "tuple[]"
       }
     ],
+    "name": "multiCall",
+    "outputs": [
+      {
+        "internalType": "bytes[]",
+        "name": "",
+        "type": "bytes[]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_wallet",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct TransactionManager.Call[]",
+        "name": "_transactions",
+        "type": "tuple[]"
+      }
+    ],
     "name": "multiCallWithGuardians",
-    "outputs": [
-      {
-        "internalType": "bytes[]",
-        "name": "",
-        "type": "bytes[]"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_wallet",
-        "type": "address"
-      },
-      {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "value",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
-          }
-        ],
-        "internalType": "struct TransactionManager.Call[]",
-        "name": "_transactions",
-        "type": "tuple[]"
-      },
-      {
-        "internalType": "address",
-        "name": "_sessionUser",
-        "type": "address"
-      },
-      {
-        "internalType": "uint64",
-        "name": "_duration",
-        "type": "uint64"
-      }
-    ],
-    "name": "multiCallWithGuardiansAndStartSession",
-    "outputs": [
-      {
-        "internalType": "bytes[]",
-        "name": "",
-        "type": "bytes[]"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_wallet",
-        "type": "address"
-      },
-      {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "value",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
-          }
-        ],
-        "internalType": "struct TransactionManager.Call[]",
-        "name": "_transactions",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "multiCallWithSession",
     "outputs": [
       {
         "internalType": "bytes[]",

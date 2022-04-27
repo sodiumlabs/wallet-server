@@ -63,7 +63,7 @@ func DefaultGuardian() ethcommon.Address {
 
 func WalletModules() []ethcommon.Address {
 	return []ethcommon.Address{
-		ethcommon.HexToAddress("0xaE79a72B62bC0207A664439c5Cea2d3E6D5B19a0"),
+		ethcommon.HexToAddress("0x3436d1E60647A71407555e6ab5b62Bbe22D2a5b2"),
 	}
 }
 

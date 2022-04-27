@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: 436271674037.dkr.ecr.ap-southeast-1.amazonaws.com/wallet-server
   pullPolicy: IfNotPresent
-  tag: e2d687eedf330f9f7d72b66e53eeb2c3552542e7
+  tag: f930a50c009b9afee86339f2c7ee040817b6722f
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -1,15 +1,16 @@
 package ethapis
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"math/big"
 	"os"
+	"strings"
 
 	"github.com/ChainSafe/chainbridge-utils/crypto/secp256k1"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	ethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/dao/model"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/db"
@@ -65,13 +66,13 @@ func EthTx(c *gin.Context, q *EthCallRequest) (*EthCallResponse, error) {
 	}
 
 	opts, err := bind.NewKeyedTransactorWithChainID(kp.PrivateKey(), big.NewInt(80001))
-	opts2, err := bind.NewKeyedTransactorWithChainID(kp.PrivateKey(), big.NewInt(80001))
 
 	if err != nil {
 		return nil, err
 	}
 
 	opts.GasPrice = big.NewInt(55000000000)
+	opts.GasLimit = uint64(1000000)
 
 	module, err := contracts.NewArgentModule(model.WalletModules()[0], client)
 
@@ -91,40 +92,23 @@ func EthTx(c *gin.Context, q *EthCallRequest) (*EthCallResponse, error) {
 		return nil, err
 	}
 
-	opts2.GasLimit = 21000
-	opts2.NoSend = true
-	rtx, err := module.MultiCallWithGuardians(opts2, user.RWalletAddress(), []contracts.TransactionManagerCall{
-		{
-			To:    ethcommon.HexToAddress(params.To),
-			Value: big.NewInt(0),
-			Data:  common.FromHex(params.Data),
-		},
-	})
-
-	if err != nil {
-		return nil, fmt.Errorf("ready failed: %s", err)
-	}
-
 	if err := json.Unmarshal(j, &params); err != nil {
 		return nil, err
 	}
 
-	ss := []string{
-		params.Signature,
-	}
-
-	jj, err := json.Marshal(ss)
+	ss := strings.Split(params.Signature, "x")
+	dest, err := hex.DecodeString(ss[1])
 
 	if err != nil {
-		return nil, fmt.Errorf("ready failed: %s", err)
+		return nil, err
 	}
 
-	tx, err := module.Execute(
-		opts,
-		common.HexToAddress(user.WalletAddress),
-		rtx.Data(),
+	_, messageHash, err := module.GetSignHash(
+		nil,
+		model.WalletModules()[0],
+		big.NewInt(0),
+		common.FromHex(params.Data),
 		big.NewInt(params.Nonce),
-		[]byte(jj),
 		big.NewInt(0),
 		big.NewInt(0),
 		common.HexToAddress("0x5A0585D409ca86d9Fa771690ea37d32405Da1f67"),
@@ -132,7 +116,23 @@ func EthTx(c *gin.Context, q *EthCallRequest) (*EthCallResponse, error) {
 	)
 
 	if err != nil {
-		return nil, fmt.Errorf("failed to call contract: %s", err)
+		return nil, err
+	}
+
+	tx, err := module.Execute(
+		opts,
+		common.HexToAddress(user.WalletAddress),
+		common.FromHex(params.Data),
+		big.NewInt(params.Nonce),
+		dest,
+		big.NewInt(0),
+		big.NewInt(0),
+		common.HexToAddress("0x5A0585D409ca86d9Fa771690ea37d32405Da1f67"),
+		common.HexToAddress("0xf521F6d48703DE80Ba378cFf4Ea7519272d315B7"),
+	)
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to call contract: %s %s:%s", err, user.WalletAddress, string(messageHash))
 	}
 
 	return &EthCallResponse{

@@ -9,7 +9,7 @@ import (
 )
 
 var WalletFactoryAddressByNetwork = map[rpcm.Network]string{
-	rpcm.Network_mumbai: "0x8b088C8243C207d1932D9C50fAcE12F8E5272A80",
+	rpcm.Network_mumbai: "0x0A02100e0350D89D1eBDF08d8728297B1a8f85eF",
 }
 
 func GetAddressForCounterfactualWallet(userId uint) (string, error) {
@@ -29,7 +29,7 @@ func GetAddressForCounterfactualWallet(userId uint) (string, error) {
 
 	address, err := factory.GetAddressForCounterfactualWallet(
 		&bind.CallOpts{},
-		[]ethcommon.Address{ethcommon.HexToAddress("0x6544e298b1C1E8Dd13045ADa7B5d04b9238D77B4")},
+		[]ethcommon.Address{ethcommon.HexToAddress("0x968aD39B0812e853685d8567fb8AA009E63F2fcc")},
 		b,
 	)
 
