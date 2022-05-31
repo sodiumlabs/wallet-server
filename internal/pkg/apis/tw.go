@@ -58,7 +58,6 @@ type OauthVerifierResponse struct {
 func (f *OauthVerifierRequest) TypeName() string { return "OauthVerifierRequestInput" }
 
 func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, error) {
-	// TODO等待tw api接入
 	config := oauth1.Config{
 		ConsumerKey:    os.Getenv("twconsumerKey"),
 		ConsumerSecret: os.Getenv("twconsumerSecret"),

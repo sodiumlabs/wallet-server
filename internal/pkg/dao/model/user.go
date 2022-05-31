@@ -130,3 +130,55 @@ func RegisteUserByTw(db *gorm.DB, tuser *twitter.User) (*User, *UserTw, error) {
 
 	return user, userTw, nil
 }
+
+func RegisteUserByPhone(db *gorm.DB, phone string) (*User, *UserPhone, error) {
+	if db == nil {
+		return nil, nil, fmt.Errorf("db is nil")
+	}
+
+	var user *User
+	var userPhone *UserPhone
+
+	err := db.Transaction(func(tx *gorm.DB) error {
+		user = &User{
+			Username:                 fmt.Sprintf("phone_%d", phone),
+			Email:                    "",
+			WalletAddress:            "",
+			OwnerAddress:             "",
+			OwnerEncryptedPrivatekey: "",
+			CreatedAt:                time.Now().UTC(),
+			UpdatedAt:                time.Now().UTC(),
+		}
+		if err := tx.Create(user).Error; err != nil {
+			return err
+		}
+		userPhone = &UserPhone{
+			Phone:  phone,
+			UserId: user.Id,
+		}
+		if err := tx.Create(userPhone).Error; err != nil {
+			return err
+		}
+
+		// Wallet address calculation
+		walletAddress, err := eth.GetAddressForCounterfactualWallet(user.Id)
+
+		if err != nil {
+			return err
+		}
+
+		user.WalletAddress = walletAddress
+
+		if err := tx.Save(user).Error; err != nil {
+			return err
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return user, userPhone, nil
+}

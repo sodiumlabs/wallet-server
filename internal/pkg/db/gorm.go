@@ -13,6 +13,7 @@ func autoMigrate() error {
 		model.UserTw{},
 		model.WalletDeploy{},
 		model.StripePay{},
+		model.UserPhone{},
 	}
 	return db.AutoMigrate(models...)
 }
