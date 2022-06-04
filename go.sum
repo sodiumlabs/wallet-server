@@ -896,6 +896,8 @@ github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604175955-b
 github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604175955-ba2ee01bee6f/go.mod h1:D5o8/Tgia19s8FJlATHaTvLbtdiGJ7nbjSKtEU8XPno=
 github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604191342-49e5bc324188 h1:zSFQyBRfHAGIEQPViyExfSoZ5zbKc0Iha9aPTEwwl2U=
 github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604191342-49e5bc324188/go.mod h1:D5o8/Tgia19s8FJlATHaTvLbtdiGJ7nbjSKtEU8XPno=
+github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604193214-84487f1f554d h1:lecxCtlxsq+omxBBA0rHto85EpGFpMSsR+j5Iyxg6Sk=
+github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604193214-84487f1f554d/go.mod h1:D5o8/Tgia19s8FJlATHaTvLbtdiGJ7nbjSKtEU8XPno=
 github.com/soheilhy/cmux v0.1.4/go.mod h1:IM3LyeVVIOuxMH7sFAkER9+bJ4dT7Ms6E4xg4kGIyLM=
 github.com/spacemonkeygo/openssl v0.0.0-20181017203307-c2dcc5cca94a/go.mod h1:7AyxJNCJ7SBZ1MfVQCWD6Uqo2oubI2Eq2y2eqf+A5r0=
 github.com/spacemonkeygo/spacelog v0.0.0-20180420211403-2296661a0572/go.mod h1:w0SWMsp6j9O/dk4/ZpIhL+3CkG8ofA2vuv7k+ltqUMc=
@@ -1046,6 +1048,8 @@ go.uber.org/atomic v1.3.2/go.mod h1:gD2HeocX3+yG+ygLZcrzQJaqmWj9AIm7n08wl/qW/PE=
 go.uber.org/atomic v1.4.0/go.mod h1:gD2HeocX3+yG+ygLZcrzQJaqmWj9AIm7n08wl/qW/PE=
 go.uber.org/atomic v1.5.0/go.mod h1:sABNBOSYdrvTF6hTgEIbc7YasKWGhgEQZyfxyTvoXHQ=
 go.uber.org/atomic v1.6.0/go.mod h1:sABNBOSYdrvTF6hTgEIbc7YasKWGhgEQZyfxyTvoXHQ=
+go.uber.org/automaxprocs v1.5.1 h1:e1YG66Lrk73dn4qhg8WFSvhF0JuFQF0ERIp4rpuV8Qk=
+go.uber.org/automaxprocs v1.5.1/go.mod h1:BF4eumQw0P9GtnuxxovUd06vwm1o18oMzFtK66vU6XU=
 go.uber.org/multierr v1.1.0/go.mod h1:wR5kodmAFQ0UK8QlbwjlSNy0Z68gJhDJUG5sjR94q/0=
 go.uber.org/multierr v1.3.0/go.mod h1:VgVr7evmIr6uPjLBxg28wmKNXyqE9akIJ5XnfpiKl+4=
 go.uber.org/multierr v1.5.0/go.mod h1:FeouvMocqHpRaaGuG9EjoKcStLC43Zu/fmqdUMPcKYU=

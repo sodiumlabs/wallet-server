@@ -6,6 +6,7 @@ import (
 
 	"github.com/sodiumlabs/wallet-server/cmd"
 	"github.com/urfave/cli/v2"
+	_ "go.uber.org/automaxprocs"
 )
 
 func main() {

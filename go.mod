@@ -37,7 +37,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
-	github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604191342-49e5bc324188 // indirect
+	github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604193214-84487f1f554d // indirect
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/tklauser/numcpus v0.4.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
@@ -67,6 +67,7 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/stripe/stripe-go/v72 v72.98.0
 	github.com/wI2L/fizz v0.18.1
+	go.uber.org/automaxprocs v1.5.1
 	gorm.io/driver/mysql v1.3.2
 	gorm.io/driver/sqlite v1.3.1
 	gorm.io/gorm v1.23.3

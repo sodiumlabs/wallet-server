@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/ethereum/go-ethereum/common"
+	ethereumhexutil "github.com/ethereum/go-ethereum/common/hexutil"
 	ethereumcrypto "github.com/ethereum/go-ethereum/crypto"
 	"github.com/sodiumlabs/multi-party-sig/pkg/ecdsa"
 	"github.com/sodiumlabs/multi-party-sig/pkg/math/curve"
@@ -78,7 +79,7 @@ func InitMPCNodeLocal(db *gorm.DB) error {
 		return err
 	} else {
 		b, _ := s.ToEthBytes()
-		fmt.Println(common.Bytes2Hex(b))
+		fmt.Println(ethereumhexutil.Encode(b))
 	}
 
 	return nil
@@ -130,7 +131,7 @@ func CMPSign(userId uint, m []byte) (*ecdsa.Signature, error) {
 		}
 
 		go func(id party.ID) {
-			pl := pool.NewPool(0)
+			pl := pool.NewPool(10)
 			defer pl.TearDown()
 			cmpSign(uconfigs, m, ids, net, pl, sessionId, cherr, ch)
 		}(id)
