@@ -14,6 +14,7 @@ func autoMigrate() error {
 		model.WalletDeploy{},
 		model.StripePay{},
 		model.UserPhone{},
+		model.MPC{},
 	}
 	return db.AutoMigrate(models...)
 }

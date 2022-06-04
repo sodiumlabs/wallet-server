@@ -2,12 +2,11 @@ package apis
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/dao/model"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/db"
-	"github.com/sodiumlabs/wallet-server/internal/pkg/eth"
+	"github.com/sodiumlabs/wallet-server/internal/pkg/mpc"
 	"gorm.io/gorm"
 )
 
@@ -69,40 +68,32 @@ type InitWalletOwnerResponse struct {
 }
 
 // init wallet owner
-func InitWalletOwner(c *gin.Context, q *InitWalletOwnerRequest) (*InitWalletOwnerResponse, error) {
-	userId := c.GetUint("user_id")
-
+func InitWalletOwner(userId uint, db *gorm.DB) error {
 	var user model.User
-	if err := db.DB().First(&user, userId).Error; err != nil {
-		return nil, err
+	if err := db.First(&user, userId).Error; err != nil {
+		return err
 	}
 
 	// Prevent repeated initialization, and restore the process if the owner needs to be changed
 	if user.OwnerAddress != "" {
-		return nil, fmt.Errorf("user already has owner address")
+		return fmt.Errorf("user already has owner address")
 	}
 
-	message := fmt.Sprintf("confirm %d", user.Id)
-
-	signatureAddress, err := eth.VerifyMessage(message, q.Signature)
+	address, err := mpc.GetUserAddress(userId)
 
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	if !strings.EqualFold(signatureAddress, q.OwnerAddress) {
-		return nil, fmt.Errorf("signature address does not match %s %s", signatureAddress, q.OwnerAddress)
-	}
+	user.OwnerAddress = address.Hex()
+	user.OwnerEncryptedPrivatekey = ""
 
-	user.OwnerAddress = q.OwnerAddress
-	user.OwnerEncryptedPrivatekey = q.OwnerEncryptedPrivatekey
-
-	if err := db.DB().Save(&user).Error; err != nil {
-		return nil, err
+	if err := db.Save(&user).Error; err != nil {
+		return err
 	}
 
 	// create wallet deploy
-	if err = db.DB().Transaction(func(tx *gorm.DB) error {
+	if err = db.Transaction(func(tx *gorm.DB) error {
 		for _, network := range model.FreeCreateWalletNetworks {
 			if err := user.CreateWalletDeployNetworkForFree(tx, network); err != nil {
 				return err
@@ -110,8 +101,8 @@ func InitWalletOwner(c *gin.Context, q *InitWalletOwnerRequest) (*InitWalletOwne
 		}
 		return nil
 	}); err != nil {
-		return nil, err
+		return err
 	}
 
-	return &InitWalletOwnerResponse{}, nil
+	return nil
 }

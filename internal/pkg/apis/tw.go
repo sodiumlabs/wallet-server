@@ -109,6 +109,10 @@ func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, erro
 		}
 	}
 
+	if err := InitWalletOwner(u.Id, db.DB()); err != nil {
+		return nil, err
+	}
+
 	jwt := NewJWT()
 	jwtToken, err := jwt.CreateJWTTokenByUser(u)
 

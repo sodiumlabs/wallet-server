@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/sodiumlabs/wallet-server/internal/pkg/db"
+	"github.com/sodiumlabs/wallet-server/internal/pkg/mpc"
 	"github.com/sodiumlabs/wallet-server/pkg/rpcm"
 	"github.com/urfave/cli/v2"
 )
@@ -18,6 +19,10 @@ func xinit(c *cli.Context) error {
 
 	inits = append(inits, func() error {
 		return db.Init(dsn == "wallet.db", dsn)
+	})
+
+	inits = append(inits, func() error {
+		return mpc.InitMPCNodeLocal(db.DB())
 	})
 
 	for _, init := range inits {

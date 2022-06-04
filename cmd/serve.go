@@ -65,12 +65,12 @@ func Serve(c *cli.Context) error {
 
 	f.Group("/wallet", "wallet", "wallet", apis.JTWMiddware).
 		GET("/info", nil, tonic.Handler(apis.WalletInfo, 200)).
-		POST("/init", nil, tonic.Handler(apis.InitWalletOwner, 200)).
 		GET("/pay", nil, tonic.Handler(apis.CreateCheckoutSession, 200))
 
 	f.Group("/eth", "eth", "eth", apis.JTWMiddware).
 		POST("/eth_call", nil, tonic.Handler(ethapis.EthCall, 200)).
-		POST("/eth_tx", nil, tonic.Handler(ethapis.EthTx, 200))
+		POST("/eth_tx", nil, tonic.Handler(ethapis.EthTx, 200)).
+		POST("/eth_sign", nil, tonic.Handler(ethapis.EthSign, 200))
 
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", port),

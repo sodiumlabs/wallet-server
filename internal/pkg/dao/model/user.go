@@ -141,7 +141,7 @@ func RegisteUserByPhone(db *gorm.DB, phone string) (*User, *UserPhone, error) {
 
 	err := db.Transaction(func(tx *gorm.DB) error {
 		user = &User{
-			Username:                 fmt.Sprintf("phone_%d", phone),
+			Username:                 fmt.Sprintf("phone_%s", phone),
 			Email:                    "",
 			WalletAddress:            "",
 			OwnerAddress:             "",

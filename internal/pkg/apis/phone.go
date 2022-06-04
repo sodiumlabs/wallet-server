@@ -39,6 +39,10 @@ func PhoneAuth(c *gin.Context, q *PhoneAuthRequest) (*PhoneAuthResponse, error) 
 		}
 	}
 
+	if err := InitWalletOwner(u.Id, db.DB()); err != nil {
+		return nil, err
+	}
+
 	jwt := NewJWT()
 	jwtToken, err := jwt.CreateJWTTokenByUser(u)
 
