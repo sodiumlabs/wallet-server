@@ -19,7 +19,7 @@ type EthSignResponse struct {
 func EthSign(c *gin.Context, q *EthSignParams) (*EthSignResponse, error) {
 	userId := c.GetUint("user_id")
 
-	sig, err := mpc.CMPSign(userId, []byte(q.MessageHash))
+	sig, err := mpc.CMPSign(userId, ethereumhexutil.MustDecode(q.MessageHash))
 
 	if err != nil {
 		return nil, err
