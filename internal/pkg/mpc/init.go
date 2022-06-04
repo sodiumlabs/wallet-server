@@ -145,7 +145,7 @@ func CMPSign(userId uint, m []byte) (*ecdsa.Signature, error) {
 }
 
 func GetUserAddress(userId uint) (*common.Address, error) {
-	uconfigs, err := configs[ids[userId]].DeriveBIP32(uint32(userId))
+	uconfigs, err := configs[ids[0]].DeriveBIP32(uint32(userId))
 
 	if err != nil {
 		return nil, err
