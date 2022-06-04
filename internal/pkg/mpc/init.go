@@ -91,6 +91,7 @@ func cmpSign(c *cmp.Config, m []byte, signers party.IDSlice, n *test.Network, pl
 		return
 	}
 
+	println("cmpSign:", string(c.ID))
 	test.HandlerLoop(c.ID, h, n)
 
 	if string(c.ID) == "a" {
