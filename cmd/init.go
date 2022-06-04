@@ -5,13 +5,14 @@ import (
 
 	"github.com/sodiumlabs/wallet-server/internal/pkg/db"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/mpc"
+	"github.com/sodiumlabs/wallet-server/pkg/rpcm"
 	"github.com/urfave/cli/v2"
 )
 
 /// 这里对一些服务进行初始化聚合
 func xinit(c *cli.Context) error {
 	inits := []func() error{
-		// rpcm.Init,
+		rpcm.Init,
 	}
 
 	dsn := os.Getenv("DB_DSN")
