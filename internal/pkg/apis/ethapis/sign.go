@@ -1,7 +1,7 @@
 package ethapis
 
 import (
-	"github.com/ethereum/go-ethereum/common"
+	ethereumhexutil "github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/mpc"
 )
@@ -31,10 +31,8 @@ func EthSign(c *gin.Context, q *EthSignParams) (*EthSignResponse, error) {
 		return nil, err
 	}
 
-	sig.R.MarshalBinary()
-
 	res := EthSignResponse{
-		Signature: common.Bytes2Hex(signBytes),
+		Signature: ethereumhexutil.Encode(signBytes),
 	}
 
 	return &res, nil
