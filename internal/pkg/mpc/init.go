@@ -78,7 +78,7 @@ func InitMPCNodeLocal(db *gorm.DB) error {
 		return err
 	} else {
 		b, _ := s.ToEthBytes()
-		fmt.Println(string(b))
+		fmt.Println(common.Bytes2Hex(b))
 	}
 
 	return nil
