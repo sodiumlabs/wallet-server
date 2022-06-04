@@ -37,7 +37,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
-	github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604193214-84487f1f554d // indirect
+	github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604194911-d3aea5183403 // indirect
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/tklauser/numcpus v0.4.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
