@@ -23,8 +23,10 @@ func PhoneAuth(c *gin.Context, q *PhoneAuthRequest) (*PhoneAuthResponse, error) 
 	// check login
 	up := &model.UserPhone{}
 	u := &model.User{}
+	registe := false
 	if err := db.DB().First(up, "phone = ?", q.Phone).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
+			registe = true
 			if u, up, err = model.RegisteUserByPhone(db.DB(), q.Phone); err != nil {
 				return nil, err
 			}
@@ -39,8 +41,10 @@ func PhoneAuth(c *gin.Context, q *PhoneAuthRequest) (*PhoneAuthResponse, error) 
 		}
 	}
 
-	if err := InitWalletOwner(u.Id, db.DB()); err != nil {
-		return nil, err
+	if registe {
+		if err := InitWalletOwner(u.Id, db.DB()); err != nil {
+			return nil, err
+		}
 	}
 
 	jwt := NewJWT()

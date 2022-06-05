@@ -93,8 +93,10 @@ func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, erro
 	// check login
 	utw := &model.UserTw{}
 	u := &model.User{}
+	registe := false
 	if err := db.DB().First(utw, "tw_id = ?", twuser.ID).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
+			registe = true
 			if u, utw, err = model.RegisteUserByTw(db.DB(), twuser); err != nil {
 				return nil, err
 			}
@@ -109,8 +111,10 @@ func Auth(c *gin.Context, q *OauthVerifierRequest) (*OauthVerifierResponse, erro
 		}
 	}
 
-	if err := InitWalletOwner(u.Id, db.DB()); err != nil {
-		return nil, err
+	if registe {
+		if err := InitWalletOwner(u.Id, db.DB()); err != nil {
+			return nil, err
+		}
 	}
 
 	jwt := NewJWT()

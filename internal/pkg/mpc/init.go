@@ -27,8 +27,8 @@ var ids = party.IDSlice{}
 
 func createTestMpcNode(db *gorm.DB) error {
 	pl := pool.NewPool(0)
-	threshold := 4
-	configs, ids = test.GenerateConfig(group, 6, threshold, rand.Reader, pl)
+	threshold := 3
+	configs, ids = test.GenerateConfig(group, 3, threshold, rand.Reader, pl)
 
 	for _, id := range ids {
 		configBytes, err := configs[id].MarshalBinary()
