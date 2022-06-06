@@ -48,7 +48,7 @@ func Serve(c *cli.Context) error {
 				"OPTIONS",
 			},
 			AllowCredentials: true,
-			Debug:            true,
+			Debug:            false,
 		}).HandlerFunc(c.Writer, c.Request)
 	})
 
