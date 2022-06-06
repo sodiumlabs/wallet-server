@@ -58,7 +58,7 @@ func StripePaySyncPool(db *gorm.DB) error {
 	for {
 		var sp StripePay
 		if err := db.Order("latest_checked_at asc").Where("status = ?", stripe.CheckoutSessionStatusOpen).First(&sp).Error; err != nil {
-			if err == gorm.ErrRecordNotFound {
+			if err != gorm.ErrRecordNotFound {
 				fmt.Println(err.Error())
 			}
 			time.Sleep(time.Second * 60)
