@@ -101,9 +101,9 @@ func WalletDeployPool(db *gorm.DB) error {
 		if err := db.First(&wd, "status = ?", WalletDeployStatusPending).Error; err != nil {
 			if err != gorm.ErrRecordNotFound {
 				fmt.Println(err.Error())
-				time.Sleep(60 * time.Second)
-				continue
 			}
+			time.Sleep(60 * time.Second)
+			continue
 		}
 
 		var user User
