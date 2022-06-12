@@ -49,7 +49,7 @@ func StripePaySyncPool(db *gorm.DB) error {
 
 	opts.GasPrice = big.NewInt(55000000000)
 
-	erc20, err := contracts.NewErc20(ethcommon.HexToAddress("0x5A0585D409ca86d9Fa771690ea37d32405Da1f67"), client)
+	erc20, err := contracts.NewErc20(ethcommon.HexToAddress("0x31aD2c4F1A3459CDD81249cd49E7D68d9c31BDb0"), client)
 
 	if err != nil {
 		return err
