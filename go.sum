@@ -906,6 +906,8 @@ github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604194911-d
 github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220604194911-d3aea5183403/go.mod h1:D5o8/Tgia19s8FJlATHaTvLbtdiGJ7nbjSKtEU8XPno=
 github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220612011543-12c3f92ea64b h1:DA2EZAqZxPxu5QT3T16VX9pIx28QoBqQmstyI/18CLY=
 github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220612011543-12c3f92ea64b/go.mod h1:iN5UM/ZtRt2izIIB0iVHnSSfaqwb+ln62hnGPTDoWJ0=
+github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220612030927-6c6c99525a69 h1:XuDTeIJDeeSMuf6Lv2B+f3tR8GD37lEe7xPYovYSQyM=
+github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220612030927-6c6c99525a69/go.mod h1:iN5UM/ZtRt2izIIB0iVHnSSfaqwb+ln62hnGPTDoWJ0=
 github.com/soheilhy/cmux v0.1.4/go.mod h1:IM3LyeVVIOuxMH7sFAkER9+bJ4dT7Ms6E4xg4kGIyLM=
 github.com/spacemonkeygo/openssl v0.0.0-20181017203307-c2dcc5cca94a/go.mod h1:7AyxJNCJ7SBZ1MfVQCWD6Uqo2oubI2Eq2y2eqf+A5r0=
 github.com/spacemonkeygo/spacelog v0.0.0-20180420211403-2296661a0572/go.mod h1:w0SWMsp6j9O/dk4/ZpIhL+3CkG8ofA2vuv7k+ltqUMc=
