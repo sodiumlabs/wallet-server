@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 
@@ -30,6 +31,10 @@ func Serve(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
+
+	// 记录到文件。
+	logf, _ := os.Create("gin.log")
+	gin.DefaultWriter = io.MultiWriter(logf)
 
 	g := gin.Default()
 	g.Use(gin.Recovery())
