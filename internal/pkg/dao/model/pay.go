@@ -61,7 +61,6 @@ func StripePaySyncPool(db *gorm.DB) error {
 			if err != gorm.ErrRecordNotFound {
 				fmt.Println(err.Error())
 			}
-			time.Sleep(time.Second * 60)
 			continue
 		}
 
@@ -78,7 +77,6 @@ func StripePaySyncPool(db *gorm.DB) error {
 
 		if err := db.Save(&sp).Error; err != nil {
 			fmt.Println(err.Error())
-			time.Sleep(time.Second * 60)
 			continue
 		}
 
