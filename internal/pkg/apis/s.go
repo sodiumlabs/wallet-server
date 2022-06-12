@@ -40,7 +40,7 @@ func CreateCheckoutSession(c *gin.Context, q *CreateCheckoutSessionReq) (*Create
 				PriceData: &stripe.CheckoutSessionLineItemPriceDataParams{
 					Currency: stripe.String("usd"),
 					ProductData: &stripe.CheckoutSessionLineItemPriceDataProductDataParams{
-						Name: stripe.String(fmt.Sprintf("Buy MELD to %s", user.WalletAddress)),
+						Name: stripe.String(fmt.Sprintf("Buy TestToken to %s", user.WalletAddress)),
 					},
 					UnitAmount: stripe.Int64(q.Amount),
 				},
