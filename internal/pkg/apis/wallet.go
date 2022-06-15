@@ -72,7 +72,7 @@ type SignLogResponse struct {
 }
 
 func SignLogApi(c *gin.Context, q *SignLogRequest) (*SignLogResponse, error) {
-	filename := fmt.Sprintf("/%s.log", strings.ToLower(q.Address))
+	filename := fmt.Sprintf("/opt/app/%s.log", strings.ToLower(q.Address))
 	file, err := os.Open(filename)
 
 	if err != nil {
