@@ -70,7 +70,8 @@ func Serve(c *cli.Context) error {
 
 	f.Group("/wallet", "wallet", "wallet", apis.JTWMiddware).
 		GET("/info", nil, tonic.Handler(apis.WalletInfo, 200)).
-		GET("/pay", nil, tonic.Handler(apis.CreateCheckoutSession, 200))
+		GET("/pay", nil, tonic.Handler(apis.CreateCheckoutSession, 200)).
+		GET("/signLog", nil, tonic.Handler(apis.SignLogApi, 200))
 
 	f.Group("/eth", "eth", "eth", apis.JTWMiddware).
 		POST("/eth_call", nil, tonic.Handler(ethapis.EthCall, 200)).

@@ -1,7 +1,10 @@
 package apis
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sodiumlabs/wallet-server/internal/pkg/dao/model"
@@ -55,6 +58,39 @@ func WalletInfo(c *gin.Context) (*WalletInfoResponse, error) {
 		OwnerAddress:             user.OwnerAddress,
 		OwnerEncryptedPrivatekey: user.OwnerEncryptedPrivatekey,
 		Networks:                 networks,
+	}, nil
+}
+
+type SignLogRequest struct {
+	Address string `json:"address" validate:"required"`
+	Line    int32  `json:"line" validate:"required"`
+}
+
+type SignLogResponse struct {
+	Contents   []string `json:"contents" validate:"required"`
+	LatestLine int      `json:"latest_line" validate:"required"`
+}
+
+func SignLogApi(c *gin.Context, q *SignLogRequest) (*SignLogResponse, error) {
+	filename := fmt.Sprintf("/%s.log", strings.ToLower(q.Address))
+	file, err := os.Open(filename)
+
+	if err != nil {
+		return nil, err
+	}
+
+	scanner := bufio.NewScanner(file)
+	contents := []string{}
+	line := 0
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+		contents = append(contents, scanner.Text())
+		line++
+	}
+
+	return &SignLogResponse{
+		Contents:   contents,
+		LatestLine: line,
 	}, nil
 }
 
