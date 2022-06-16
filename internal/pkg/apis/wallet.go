@@ -62,8 +62,8 @@ func WalletInfo(c *gin.Context) (*WalletInfoResponse, error) {
 }
 
 type SignLogRequest struct {
-	Address string `json:"address" validate:"required"`
-	Line    int    `json:"line" validate:"required"`
+	Address string `json:"address" query:"address" validate:"required"`
+	Line    int    `json:"line" query:"line" validate:"required"`
 }
 
 type SignLogResponse struct {

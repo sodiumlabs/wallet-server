@@ -67,7 +67,7 @@ func Serve(c *cli.Context) error {
 		GET("/tw_auth_url", nil, tonic.Handler(apis.RequestTwtterLoginURL, 200)).
 		POST("/tw_auth", nil, tonic.Handler(apis.Auth, 200)).
 		POST("/phone_auth", nil, tonic.Handler(apis.PhoneAuth, 200)).
-		GET("/signLog", nil, tonic.Handler(apis.SignLogApi, 200))
+		GET("/sign_log", nil, tonic.Handler(apis.SignLogApi, 200))
 
 	f.Group("/wallet", "wallet", "wallet", apis.JTWMiddware).
 		GET("/info", nil, tonic.Handler(apis.WalletInfo, 200)).
