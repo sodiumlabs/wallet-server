@@ -11,7 +11,7 @@ import (
 )
 
 func openMysql(dsn string) (*gorm.DB, error) {
-	file, err := os.Create("/gorm.log")
+	file, err := os.Create("/opt/app/gorm.log")
 
 	if err != nil {
 		return nil, err

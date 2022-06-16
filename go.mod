@@ -39,7 +39,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
-	github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220616032438-24f9b1fc9d03 // indirect
+	github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220616044906-4f2185c8f537 // indirect
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/tklauser/numcpus v0.4.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
@@ -74,3 +74,5 @@ require (
 	gorm.io/driver/sqlite v1.3.1
 	gorm.io/gorm v1.23.3
 )
+
+// replace github.com/sodiumlabs/multi-party-sig v0.6.0-alpha-2021-09-21.0.20220616043249-6fe49c9cb497 => /Users/alberthuang/code/multi-party-sig

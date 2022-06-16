@@ -1,0 +1,16 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /auth/tw_auth_url         --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (5 handlers)
+[GIN-debug] POST   /auth/tw_auth             --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (5 handlers)
+[GIN-debug] POST   /auth/phone_auth          --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (5 handlers)
+[GIN-debug] GET    /auth/sign_log            --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (5 handlers)
+[GIN-debug] GET    /wallet/info              --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (6 handlers)
+[GIN-debug] GET    /wallet/pay               --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (6 handlers)
+[GIN-debug] POST   /eth/eth_call             --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (6 handlers)
+[GIN-debug] POST   /eth/eth_tx               --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (6 handlers)
+[GIN-debug] POST   /eth/eth_sign             --> github.com/wI2L/fizz.(*RouterGroup).Handle.func1 (6 handlers)
+[GIN-debug] GET    /openapi.json             --> github.com/wI2L/fizz.(*Fizz).OpenAPI.func1 (5 handlers)
