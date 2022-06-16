@@ -63,7 +63,7 @@ func WalletInfo(c *gin.Context) (*WalletInfoResponse, error) {
 
 type SignLogRequest struct {
 	Address string `json:"address" validate:"required"`
-	Line    int32  `json:"line" validate:"required"`
+	Line    int    `json:"line" validate:"required"`
 }
 
 type SignLogResponse struct {
@@ -83,8 +83,9 @@ func SignLogApi(c *gin.Context, q *SignLogRequest) (*SignLogResponse, error) {
 	contents := []string{}
 	line := 0
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
-		contents = append(contents, scanner.Text())
+		if line >= q.Line {
+			contents = append(contents, scanner.Text())
+		}
 		line++
 	}
 
