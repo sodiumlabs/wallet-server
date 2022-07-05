@@ -31,7 +31,7 @@ func initPolygon() error {
 }
 
 func initMumbai() error {
-	rpc, err := rpc.DialWebsocket(context.Background(), "ws://polygon-mumbai-fast-bor.web3-system:8546", "")
+	rpc, err := rpc.DialWebsocket(context.Background(), "wss://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/polygon/mumbai/ws", "")
 
 	if err != nil {
 		return err
@@ -57,17 +57,17 @@ func Init() error {
 		return nil
 	}
 
-	if err := initPolygon(); err != nil {
-		return err
-	}
+	// if err := initPolygon(); err != nil {
+	// 	return err
+	// }
 
 	if err := initMumbai(); err != nil {
 		return err
 	}
 
-	if err := initEthereum(); err != nil {
-		return err
-	}
+	// if err := initEthereum(); err != nil {
+	// 	return err
+	// }
 
 	println("rpcm: network initialized")
 	_init = true
