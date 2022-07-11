@@ -31,7 +31,7 @@ func initPolygon() error {
 }
 
 func initMumbai() error {
-	rpc, err := rpc.DialWebsocket(context.Background(), "wss://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/polygon/mumbai/ws", "")
+	rpc, err := rpc.DialWebsocket(context.Background(), "wss://polygon-mumbai.g.alchemy.com/v2/fIbA8DRSTQXPAhcHKiPFo19SPqhHNHam", "")
 
 	if err != nil {
 		return err
